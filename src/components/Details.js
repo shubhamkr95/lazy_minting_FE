@@ -1,0 +1,62 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { contract, provider } from "../utils/Constants";
+import { ethers } from "ethers";
+
+export const Details = () => {
+	const [UserId, setUserId] = useState("");
+	const [UserData, setUserData] = useState([]);
+	const [Txhash, setTxhash] = useState("");
+
+	const { id } = useParams();
+
+	useEffect(() => {
+		const getData = () => {
+			setUserId(id);
+			fetch(`http://localhost:8000/lazyApi/views/${id}`)
+				.then((res) => res.json())
+				.then((res) => setUserData(res));
+		};
+
+		getData();
+	}, []);
+
+	const buyNft = async () => {
+		const buyer = await provider.send("eth_requestAccounts", []);
+		let tokenId;
+		let minPrice;
+		let uri;
+		let signature;
+		UserData.map((item) => {
+			tokenId = item.tokenId;
+			minPrice = item.minPrice;
+			uri = item.uri;
+			signature = item.signature;
+		});
+		const parsedAmount = minPrice.toString();
+		const amount = { value: ethers.utils.parseEther(parsedAmount) };
+		const tx = await contract.redeem(buyer[0], tokenId, minPrice, uri, signature, amount);
+		setTxhash(tx.hash);
+	};
+
+	return (
+		<div className="grid grid-cols-1 gap-4 mt-4 ml-6 mr-6 ">
+			{UserData.map((item) => {
+				return (
+					<div className="bg-indigo-300 ... shadow-lg " key={item.tokenId}>
+						<div className="text-gray-900  text-base"> Token ID: {item.tokenId}</div>
+						<img className="w-l object-fill h-48 w-96" src={item.uri} alt="" />
+						<div className="font-bold text-xl mb-2">Price:{item.minPrice} Ether</div>
+						<button
+							onClick={buyNft}
+							className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+						>
+							Buy Now
+						</button>
+						<p>Transaction hash: {Txhash}</p>
+					</div>
+				);
+			})}
+		</div>
+	);
+};
