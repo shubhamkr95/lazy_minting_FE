@@ -44,7 +44,7 @@ export const CreateVoucher = () => {
 
 		console.log(voucher);
 
-		return fetch(`${url}create`, {
+		return fetch(`${url}/create`, {
 			method: "POST",
 			body: JSON.stringify(voucher),
 			headers: {
