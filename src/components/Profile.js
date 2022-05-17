@@ -27,10 +27,6 @@ export const Profile = () => {
 		}
 	};
 
-	const tokenHolder = async () => {
-		const account = await contract.ownerOf();
-	};
-
 	return (
 		<div className="h-56 grid grid-cols-3 gap-4 content-center ...">
 			<div>
