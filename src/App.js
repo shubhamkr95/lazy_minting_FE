@@ -21,6 +21,7 @@ function App() {
 					<Route path="views/:id" element={<Details />}></Route>
 
 					<Route path="/profile" element={<Profile />}></Route>
+
 					<Route path="*" element={<NoPageFound />}></Route>
 				</Routes>
 			</div>
