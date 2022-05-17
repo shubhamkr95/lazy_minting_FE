@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { contract, provider } from "../utils/Constants";
 import { ethers } from "ethers";
+import { url } from "../utils/Constants";
 
 export const Details = () => {
 	const [UserId, setUserId] = useState("");
@@ -13,7 +14,7 @@ export const Details = () => {
 	useEffect(() => {
 		const getData = () => {
 			setUserId(id);
-			fetch(`http://localhost:8000/lazyApi/views/${id}`)
+			fetch(`${url}views/${id}`)
 				.then((res) => res.json())
 				.then((res) => setUserData(res));
 		};

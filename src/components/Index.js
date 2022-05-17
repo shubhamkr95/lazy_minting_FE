@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { url } from "../utils/Constants";
 
 export const Index = () => {
 	const [Data, setData] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
-			fetch("http://localhost:8000/lazyApi/")
+			fetch(url)
 				.then((res) => res.json())
 				.then((res) => setData(res));
 		};
