@@ -1,7 +1,7 @@
 const SIGNING_DOMAIN_NAME = "LazyNFT-Voucher";
 const SIGNING_DOMAIN_VERSION = "1";
 
-class LazyMinter {
+export class LazyMinter {
 	constructor({ contract, signer }) {
 		this.contract = contract;
 		this.signer = signer;
@@ -42,7 +42,3 @@ class LazyMinter {
 		return this._domain;
 	}
 }
-
-module.exports = {
-	LazyMinter,
-};

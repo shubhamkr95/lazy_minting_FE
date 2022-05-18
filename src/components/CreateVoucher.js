@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ethers } from "ethers";
 import { contract, provider } from "../utils/Constants";
 import { LazyMinter } from "../utils/Voucher";
+import { url } from "../utils/Constants";
 
 export const CreateVoucher = () => {
 	const [UserBalance, setUserBalance] = useState("");
@@ -43,7 +44,7 @@ export const CreateVoucher = () => {
 
 		console.log(voucher);
 
-		return fetch("http://localhost:8000/lazyApi/create", {
+		return fetch(`${url}/create`, {
 			method: "POST",
 			body: JSON.stringify(voucher),
 			headers: {

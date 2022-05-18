@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { contract, provider } from "../utils/Constants";
 import { ethers } from "ethers";
+import { url } from "../utils/Constants";
 
 export const Details = () => {
 	const [UserId, setUserId] = useState("");
@@ -13,7 +14,7 @@ export const Details = () => {
 	useEffect(() => {
 		const getData = () => {
 			setUserId(id);
-			fetch(`http://localhost:8000/lazyApi/views/${id}`)
+			fetch(`${url}views/${id}`)
 				.then((res) => res.json())
 				.then((res) => setUserData(res));
 		};
@@ -43,9 +44,9 @@ export const Details = () => {
 		<div className="grid grid-cols-1 gap-4 mt-4 ml-6 mr-6 ">
 			{UserData.map((item) => {
 				return (
-					<div className="bg-indigo-300 ... shadow-lg " key={item.tokenId}>
+					<div className="bg-indigo-300 shadow-sm " key={item.tokenId}>
 						<div className="text-gray-900  text-base"> Token ID: {item.tokenId}</div>
-						<img className="w-l object-fill h-48 w-96" src={item.uri} alt="" />
+						<img className="w-l object-cover h-48 w-full" src={item.uri} alt="" />
 						<div className="font-bold text-xl mb-2">Price:{item.minPrice} Ether</div>
 						<button
 							onClick={buyNft}

@@ -18,17 +18,14 @@ export const Profile = () => {
 		setUserBalance(ethers.utils.formatEther(balance));
 	};
 
-	const withdraw = async () => {
+	const withdrawal = async () => {
 		try {
+			provider.getSigner();
 			await contract.withdraw();
-			console.log("Transfer successfully");
+			console.log("Successfully transfer");
 		} catch (error) {
-			alert(`Error Message: Something went wrong`);
+			alert("something went wrong");
 		}
-	};
-
-	const tokenHolder = async () => {
-		const account = await contract.ownerOf();
 	};
 
 	return (
@@ -50,7 +47,7 @@ export const Profile = () => {
 			</div>
 			<div>
 				<button
-					onClick={withdraw}
+					onClick={withdrawal}
 					className="bg-blue-500 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded-full"
 				>
 					Withdraw
