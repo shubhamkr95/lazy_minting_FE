@@ -4,7 +4,6 @@ import { Index } from "./components/Index";
 import { Navbar } from "./components/Navbar";
 import { Details } from "./components/Details";
 import { NoPageFound } from "./components/NoPageFound";
-import { Profile } from "./components/Profile";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -20,7 +19,7 @@ function App() {
 
 					<Route path="views/:id" element={<Details />}></Route>
 
-					<Route path="/profile" element={<Profile />}></Route>
+					{/* <Route path="/profile" element={<Profile />}></Route> */}
 
 					<Route path="*" element={<NoPageFound />}></Route>
 				</Routes>

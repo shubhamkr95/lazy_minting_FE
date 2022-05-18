@@ -26,11 +26,6 @@ export const Navbar = () => {
 							</a>
 						</li>
 						<li className="sm:inline-block">
-							<a href="/profile" className="p-3 hover:text-white">
-								Profile
-							</a>
-						</li>
-						<li className="sm:inline-block">
 							{!CurrentAccount ? (
 								<button onClick={walletConnect} className="p-3 hover:text-white">
 									Sign In
