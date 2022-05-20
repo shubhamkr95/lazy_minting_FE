@@ -36,8 +36,13 @@ export const Details = () => {
 		});
 		const parsedAmount = minPrice.toString();
 		const amount = { value: ethers.utils.parseEther(parsedAmount) };
-		const tx = await contract.redeem(buyer[0], tokenId, minPrice, uri, signature, amount);
-		setTxhash(tx.hash);
+
+		try {
+			const tx = await contract.redeem(buyer[0], tokenId, minPrice, uri, signature, amount);
+			setTxhash(tx.hash);
+		} catch (error) {
+			alert("Token Already minted");
+		}
 	};
 
 	return (
